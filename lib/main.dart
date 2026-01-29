@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_doctor_appointment_system_frontend/screens/login_screen.dart';
+import 'package:online_doctor_appointment_system_frontend/utilis/colors.dart';
 
 void main () {
   runApp(const MyApp());
@@ -13,7 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Doctor Appiontment',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+      primaryColor: primaryColor,
+      scaffoldBackgroundColor: bgColor,
+        ),
       home: LoginScreen(),
     );
   }

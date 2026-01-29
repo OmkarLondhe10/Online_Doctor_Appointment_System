@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_doctor_appointment_system_frontend/patient/doctor_list.dart';
+import 'package:online_doctor_appointment_system_frontend/doctor/doctor_home.dart';
 import 'package:online_doctor_appointment_system_frontend/patient/patient_home.dart';
 
 class RoleSelectScreen extends StatelessWidget {
@@ -25,7 +25,7 @@ class RoleSelectScreen extends StatelessWidget {
               child: Text("I'm a Doctor"),
               onPressed: () {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => DoctorList()));
+                  MaterialPageRoute(builder: (_) => DoctorHome()));
               },
             ),
           ],
