@@ -14,7 +14,7 @@ class DoctorHome extends StatelessWidget {
       body: Column(
         children: [
           ListTile(
-            title: Text('Create Time Slot !'),
+            title: Text('Create Time Slot'),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (_)=> CreateSlot()));
             },

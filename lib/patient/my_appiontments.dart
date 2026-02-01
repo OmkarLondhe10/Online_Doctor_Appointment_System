@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:online_doctor_appointment_system_frontend/utilis/dummy_data.dart';
 
 class MyAppointments extends StatelessWidget {
-  final appointments = [
-    {
-      "doctor": "Dr.",
-      "time": "10:00 AM",
-      "date": "28 Jan 2026",
-      "status": "Booked"
-    },
-    {
-      "doctor": "Dr. Patil",
-      "time": "2:00 PM",
-      "date": "29 Jan 2026",
-      "status": "Completed"
-    },
-  ];
+final appointments = DummyData.myAppointments;
 
   MyAppointments({super.key});
 
@@ -22,21 +10,24 @@ class MyAppointments extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("My Appointments")),
-      body: ListView.builder(
+body: appointments.isEmpty
+    ? Center(child: Text("No appointments yet"))
+    : ListView.builder(
         itemCount: appointments.length,
         itemBuilder: (context, index) {
-          final appointment = appointments[index];
+          final appt = appointments[index];
           return Card(
             margin: EdgeInsets.all(8),
             child: ListTile(
-              title: Text(appointment["doctor"]!),
-              subtitle: Text("${appointment["date"]} • ${appointment["time"]}"),
-              trailing: Text(appointment["status"]!,
-                  style: TextStyle(
-                    color: appointment["status"] == "Booked"
-                        ? Colors.orange
-                        : Colors.green,
-                  )),
+              leading: Icon(Icons.calendar_today),
+              title: Text(appt["doctor"]!),
+              subtitle: Text(
+                "${appt["date"]} • ${appt["time"]}",
+              ),
+              trailing: Text(
+                "Booked",
+                style: TextStyle(color: Colors.green),
+              ),
             ),
           );
         },
