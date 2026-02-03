@@ -28,6 +28,10 @@ class _BookSlotState extends State<BookSlot> {
     },
   ];
 
+  final String selectedDoctor = "Dr. Sharma";
+  final String patientName = "Rahul";
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

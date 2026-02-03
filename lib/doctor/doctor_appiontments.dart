@@ -1,45 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:online_doctor_appointment_system_frontend/utilis/dummy_data.dart';
+
 
 class DoctorAppointments extends StatelessWidget {
-  final appointments = [
-    {
-      "patient": "Rahul",
-      "time": "10:00 AM",
-      "date": "28 Jan 2026"
-    },
-    {
-      "patient": "Anita",
-      "time": "2:00 PM",
-      "date": "29 Jan 2026"
-    },
-  ];
-
-  DoctorAppointments({super.key});
+  const DoctorAppointments({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final appointments = DummyData.doctorAppointments;
+
     return Scaffold(
-      appBar: AppBar(title: Text("Appointments")),
-      body: ListView.builder(
-        itemCount: appointments.length,
-        itemBuilder: (context, index) {
-          final appt = appointments[index];
-          return Card(
-            child: ListTile(
-              title: Text(appt["patient"]!),
-              subtitle: Text("${appt["date"]} • ${appt["time"]}"),
-              trailing: ElevatedButton(
-                child: Text("Upload"),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Upload Prescription")),
-                  );
-                },
-              ),
+      appBar: AppBar(title: const Text("Appointments")),
+      body: appointments.isEmpty
+          ? const Center(child: Text("No appointments yet"))
+          : ListView.builder(
+              itemCount: appointments.length,
+              itemBuilder: (context, index) {
+                final appt = appointments[index];
+                return Card(
+                  margin: const EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: const Icon(Icons.person),
+                    title: Text(appt["patient"]!),
+                    subtitle: Text(
+                      "${appt["date"]} • ${appt["time"]}",
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }
