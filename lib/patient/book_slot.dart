@@ -10,7 +10,8 @@ class BookSlot extends StatefulWidget {
 }
 
 class _BookSlotState extends State<BookSlot> {
-  final List<Map<String, dynamic>> slots = [
+  final List<Map<String, dynamic>> 
+  slots = [
     {
       "date": "28/01/2026",
       "time": "10:00 AM - 10:30 AM",
@@ -43,6 +44,14 @@ class _BookSlotState extends State<BookSlot> {
           final slot = slots[index];
           final isAvailable = slot["available"] as bool;
 
+            DummyData.doctorAppointments.add({
+              "doctor": selectedDoctor,
+              "patient": patientName,
+              "date": slot["date"] as String,
+              "time": slot["time"] as String,
+              "status": "Booked",
+            });
+
           return Card(
             elevation: 2,
             margin: const EdgeInsets.only(bottom: 10),
@@ -60,7 +69,7 @@ class _BookSlotState extends State<BookSlot> {
                         slot["available"] = false;
                       });
 
-                      DummyData.myAppointments.add({
+                      DummyData.patientAppointments.add({
                         "date": slot["date"],
                         "time": slot["time"],
                         "doctor": "Dr. Sharma",
