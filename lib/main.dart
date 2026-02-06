@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_doctor_appointment_system_frontend/screens/login_screen.dart';
+import 'package:online_doctor_appointment_system_frontend/screens/signup_screen.dart';
 import 'package:online_doctor_appointment_system_frontend/utilis/colors.dart';
 
 void main () {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       primaryColor: primaryColor,
       scaffoldBackgroundColor: bgColor,
         ),
-      home: LoginScreen(),
+      home: RegisterScreen(),
     );
   }
 }

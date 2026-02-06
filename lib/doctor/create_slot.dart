@@ -141,7 +141,7 @@ class _CreateSlotState extends State<CreateSlot> {
                         final start = slot["start"] as TimeOfDay;
                         final end = slot["end"] as TimeOfDay;
 
-                        return Card(
+                        return Card(  
                           elevation: 2,
                           margin: const EdgeInsets.only(bottom: 8),
                           child: ListTile(

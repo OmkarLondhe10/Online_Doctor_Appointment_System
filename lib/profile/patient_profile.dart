@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_doctor_appointment_system_frontend/screens/login_screen.dart';
 
 class PatientProfile extends StatelessWidget {
   const PatientProfile({super.key});
@@ -44,7 +45,9 @@ class PatientProfile extends StatelessWidget {
               backgroundColor: Colors.red,
             ),
             onPressed: (){
-            Navigator.popUntil(context, (route)=> route.isFirst);
+            // Navigator.pop(context, (route)=> route.isFirst);
+            Navigator.push(context, MaterialPageRoute(builder: (_)=> LoginScreen())
+              );
             }, 
           icon: const Icon(Icons.logout),
           label: const Text("Logut")
