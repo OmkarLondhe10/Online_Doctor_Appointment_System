@@ -12,8 +12,7 @@ class _SignupScreenState extends State<RegisterScreen> {
   final TextEditingController namecontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   String role = "Doctor";
 
@@ -24,19 +23,21 @@ class _SignupScreenState extends State<RegisterScreen> {
 
     if (name.isEmpty || email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Please Fill All The Fields"),
+        const SnackBar(
+          content: Text("Please fill all the fields"),
           backgroundColor: Colors.red,
         ),
       );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Signup Successfull ! Please Login"),
-          backgroundColor: Colors.green,
-        ),
-      );
+      return;
     }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Signup successful! Please login"),
+        backgroundColor: Colors.green,
+      ),
+    );
+
     Future.delayed(const Duration(seconds: 1), () {
       Navigator.pushReplacement(
         context,
