@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:online_doctor_appointment_system_frontend/screens/login_screen.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _SignupScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _SignupScreenState extends State<RegisterScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController namecontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
@@ -49,69 +49,117 @@ class _SignupScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Sign Up")),
+      appBar: AppBar(
+        title: Text("Create Account"),
+      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(
-              controller: namecontroller,
-              decoration: const InputDecoration(labelText: "Full Name"),
-            ),
-
-            SizedBox(height: 10),
-
-            TextField(
-              controller: emailcontroller,
-              decoration: const InputDecoration(labelText: "Email"),
-            ),
-
-            SizedBox(height: 10),
-
-            TextField(
-              controller: passwordcontroller,
-              decoration: const InputDecoration(labelText: "Password"),
-            ),
-
-            SizedBox(height: 10),
-
-            TextField(
-              controller: confirmPasswordController,
-              decoration: const InputDecoration(labelText: "Confirm password"),
-            ),
-
-            Column(
-              children: [
-                RadioListTile(
-                  title: const Text("Doctor"),
-                  value: "doctor",
-                  groupValue: role,
-                  onChanged: (value) {
-                    setState(() {
-                      role = value!;
-                    });
-                  },
-                ),
-              ],
-            ),
-
-            Column(
-              children: [
-                RadioListTile(
-                  title: const Text("Patient"),
-                  value: "patient",
-                  groupValue: role,
-                  onChanged: (value) {
-                    setState(() {
-                      role = value!;
-                    });
-                  },
-                ),
-              ],
-            ),
+            const Icon(Icons.person_add, size: 80),
             const SizedBox(height: 20),
 
-            ElevatedButton(onPressed: signup, child: const Text("Signup")),
+          TextField(
+            controller: namecontroller,
+            decoration: const InputDecoration(
+              labelText: "Full Name",
+              prefixIcon: Icon(Icons.person),
+              border: OutlineInputBorder(),
+            ),
+          ),
+
+        const SizedBox(height: 20),
+
+        TextField(
+          controller: emailcontroller,
+          decoration: const InputDecoration(
+            labelText: "Email",
+            prefixIcon: Icon(Icons.email),
+            border: OutlineInputBorder(),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        TextField(
+          controller: passwordcontroller,
+          decoration: const InputDecoration(
+            labelText: "Password",
+            prefixIcon: Icon(Icons.password),
+            border: OutlineInputBorder(),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        TextField(
+          controller: confirmPasswordController,
+          decoration: const InputDecoration(
+            labelText: "Confirm Passwod",
+            prefixIcon: Icon(Icons.password),
+            border: OutlineInputBorder(),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+          Card(
+            elevation: 2,
+            child: Column(
+              children: [
+                const ListTile(
+                  title: Text("Select Role",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+              RadioListTile(
+                title: const Text("Patient"),
+                value: "patient",
+                groupValue: role,
+                onChanged: (value) {
+                  setState(() {
+                    role = value!;
+                  });
+                },
+              ),
+
+            SizedBox(height: 10),
+
+            RadioListTile(
+                title: const Text("Doctor"),
+                value: "doctor",
+                groupValue: role,
+                onChanged: (value) {
+                  setState(() {
+                    role = value!;
+                  });
+                },
+              ),
+
+
+              ],
+            ),
+          ),
+
+          SizedBox(height: 20),
+
+          ElevatedButton(onPressed: signup, child: const Text("Signup",style: TextStyle(fontSize: 16)
+              ),
+            ),
+
+            SizedBox(height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Alredy Registered?"),
+                TextButton(onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> LoginScreen()));
+                }, child: const Text("Login",style: TextStyle(fontWeight: FontWeight.bold)))
+              ],
+            )
           ],
         ),
       ),

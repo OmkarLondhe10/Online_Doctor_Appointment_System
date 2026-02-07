@@ -11,21 +11,21 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isPatient = false;
-  final emailcontroller = TextEditingController();
+  final usernamecontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
 
   void _loginSubmitted() {
-    final email = emailcontroller.text.trim();
+    final username = usernamecontroller.text.trim();
     final password = passwordcontroller.text.trim();  
 
-    if (email.isEmpty || password.isEmpty) {
+    if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please Enter Email and Password")),
       );
       return;
     }
 
-    if (isPatient && email == 'patient' && password == '1234') {
+    if (isPatient && username == 'patient' && password == '1234') {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => PatientHome()),
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ).showSnackBar(SnackBar(content: Text('Invalid Username or Password')));
     }
 
-    if (!isPatient && email == 'doctor' && password == '1234') {
+    if (!isPatient && username == 'doctor' && password == '1234') {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => DoctorHome()),
@@ -53,23 +53,37 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      appBar: AppBar(title: const Text('Login')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const Icon(Icons.login, size: 80),
+            const SizedBox(height: 20),
+
             TextField(
-              controller: emailcontroller,
-              decoration: InputDecoration(labelText: "Email"),
+              controller: usernamecontroller,
+              decoration: const InputDecoration(
+                labelText: "Username",
+                prefixIcon: Icon(Icons.email),
+                border: OutlineInputBorder(),
+              ),
             ),
+
+            const SizedBox(height: 14),
 
             TextField(
               controller: passwordcontroller,
-              decoration: InputDecoration(labelText: "Password"),
               obscureText: true,
+              decoration: const InputDecoration(
+                labelText: "Password",
+                prefixIcon: Icon(Icons.lock),
+                border: OutlineInputBorder(),
+              ),
             ),
 
-            SizedBox(height: 12),
+            const SizedBox(height: 10),
 
             Row(
               children: [
@@ -86,14 +100,40 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 20),
 
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+              ),
               onPressed: () {
-                _loginSubmitted();
+                _loginSubmitted();  // 👈 SAME LOGIC
               },
-              child: Text("Login"),
+              child: const Text(
+                "Login",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Don't have an account? "),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/signup'); 
+                    // OR use your existing navigation
+                  },
+                  child: const Text(
+                    "Sign Up",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+
 }
