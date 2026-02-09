@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
               onPressed: () {
-                _loginSubmitted();  // 👈 SAME LOGIC
+                _loginSubmitted();
               },
               child: const Text(
                 "Login",
@@ -121,7 +121,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/signup'); 
-                    // OR use your existing navigation
                   },
                   child: const Text(
                     "Sign Up",

@@ -45,8 +45,8 @@ class PatientProfile extends StatelessWidget {
               backgroundColor: Colors.red,
             ),
             onPressed: (){
-            // Navigator.pop(context, (route)=> route.isFirst);
-            Navigator.push(context, MaterialPageRoute(builder: (_)=> LoginScreen())
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=> LoginScreen()),
+            (route) => false,
               );
             }, 
           icon: const Icon(Icons.logout),
